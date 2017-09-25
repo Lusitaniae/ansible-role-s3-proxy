@@ -3,6 +3,17 @@
 
   vars:
     s3_repository_url: sentinel-s2-l1c.s3.amazonaws.com
+    nginx_cache_path: /tmp/cache
+    nginx_cache_path_temp: /tmp/cache/workdir
+
+  pre_tasks:
+    - name: Update apt cache.
+      apt: update_cache=yes cache_valid_time=600
+      when: ansible_os_family == 'Debian'
+      changed_when: false
+
+    - name: Install dependencies.
+      package: name=curl state=present
 
   roles:
     - geerlingguy.nginx
