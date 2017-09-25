@@ -1,6 +1,6 @@
-user www-data;
+user {{ nginx_user }};
 worker_processes auto;
-pid /run/nginx.pid;
+pid {{ nginx_pidfile }};
 worker_rlimit_nofile 4096;
 
 events {
@@ -17,7 +17,7 @@ http {
         types_hash_max_size 2048;
         server_tokens off;
 
-        include /etc/nginx/mime.types;
+        include {{ nginx_mime_file_path }};
         default_type application/octet-stream;
 
         # Timeout settings
@@ -37,7 +37,10 @@ http {
         # location to buffer large requests
         proxy_temp_path {{ nginx_cache_path_temp }};
 
-
-        include /etc/nginx/conf.d/*.conf;
-        include /etc/nginx/sites-enabled/*;
+        {% block http_includes %}
+            include {{ nginx_conf_path }}/*.conf;
+        {% if nginx_conf_path != nginx_vhost_path %}
+            include {{ nginx_vhost_path }}/*;
+        {% endif %}
+        {% endblock %}
 }

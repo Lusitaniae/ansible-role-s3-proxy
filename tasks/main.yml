@@ -11,6 +11,6 @@
   - name: Setup custom vhost configuration file.
     template:
       src: vhosts.j2
-      dest: "{{ nginx_vhost_path }}/default"
+      dest: "{{ nginx_default_vhost_path }}"
       mode: 0644
     notify: reload nginx

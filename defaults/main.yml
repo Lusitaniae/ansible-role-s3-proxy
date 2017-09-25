@@ -2,9 +2,6 @@
 # S3 Repository to be proxied
 s3_repository_url: sentinel-s2-l1c.s3.amazonaws.com
 
-# Nginx config path
-nginx_path: /etc/nginx
-
 # Nginx config
 # Cache opened files
 open_file_cache_max_files: 2000
