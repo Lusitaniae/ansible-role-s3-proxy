@@ -1,0 +1,29 @@
+---
+# S3 Repository to be proxied
+s3_repository_url: sentinel-s2-l1c.s3.amazonaws.com
+
+# Nginx config path
+nginx_path: /etc/nginx
+
+# Nginx config
+# Cache opened files
+open_file_cache_max_files: 2000
+open_file_cache_inactive: 200s
+open_file_cache_valid: 600s
+open_file_cache_min_uses: 3
+
+# Cache Settings
+# Working directories
+nginx_cache_path: /var/www/html
+nginx_cache_path_temp: /var/www/html/tmp
+# How much memory to keep track of cached assets
+# Each 10mb handles around 80k files
+nginx_cache_key_zone_size: 32m
+# Valid requests are valid for
+nginx_cache_valid: 3d
+# Failed requests are cached for
+nginx_cache_invalid: 30s
+# Maximum storage that should use for assets
+nginx_cache_max_size: 40g
+# Cached files are removed when inactive for
+nginx_cache_inactive: 30d

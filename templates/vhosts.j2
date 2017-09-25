@@ -1,0 +1,34 @@
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    location / {
+
+        proxy_set_header       Host '{{ s3_repository_url }}';
+
+        # Hide amazon headers
+        proxy_hide_header      x-amz-id-2;
+        proxy_hide_header      x-amz-request-id;
+
+        # Ignore cookies
+        proxy_hide_header      Set-Cookie;
+        proxy_ignore_headers   "Set-Cookie";
+
+        # Use keep alives
+        proxy_set_header Connection '';
+
+        # Cache Settings
+        proxy_cache default;
+        proxy_cache_valid  200 302 {{ nginx_cache_valid }};
+        proxy_cache_valid any {{ nginx_cache_invalid }};
+        proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
+        proxy_cache_lock on;
+
+        # Add Cache Header
+        add_header X-Cache-Status $upstream_cache_status;
+
+        proxy_pass https://{{ s3_repository_url }}/;
+
+    }
+
+}

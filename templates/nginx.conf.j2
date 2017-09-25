@@ -1,0 +1,43 @@
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+worker_rlimit_nofile 4096;
+
+events {
+        worker_connections 4096;
+        multi_accept on;
+        use epoll;
+}
+
+http {
+
+        sendfile on;
+        tcp_nopush on;
+        tcp_nodelay on;
+        types_hash_max_size 2048;
+        server_tokens off;
+
+        include /etc/nginx/mime.types;
+        default_type application/octet-stream;
+
+        # Timeout settings
+        reset_timedout_connection on;
+        client_body_timeout 20;
+        send_timeout 20;
+        keepalive_timeout 20;
+
+        # Open file caching
+        open_file_cache max={{ open_file_cache_max_files }} inactive={{ open_file_cache_inactive }};
+        open_file_cache_valid {{ open_file_cache_valid }};
+        open_file_cache_min_uses {{ open_file_cache_min_uses }};
+        open_file_cache_errors off;
+
+        # Proxy settings
+        proxy_cache_path  {{ nginx_cache_path }} levels=1:2 keys_zone=default:{{ nginx_cache_key_zone_size }} max_size={{ nginx_cache_max_size }} inactive={{nginx_cache_inactive}};
+        # location to buffer large requests
+        proxy_temp_path {{ nginx_cache_path_temp }};
+
+
+        include /etc/nginx/conf.d/*.conf;
+        include /etc/nginx/sites-enabled/*;
+}
