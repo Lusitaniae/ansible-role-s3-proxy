@@ -1,0 +1,8 @@
+---
+- hosts: all
+
+  vars:
+    s3_repository_url: sentinel-s2-l1c.s3.amazonaws.com
+
+  roles:
+    - role: Lusitaniae.s3-proxy
