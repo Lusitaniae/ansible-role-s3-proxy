@@ -3,7 +3,7 @@ Ansible Role: S3 Proxy
 
 [![Build Status](https://travis-ci.org/Lusitaniae/ansible-role-s3-proxy.svg?branch=master)](https://travis-ci.org/Lusitaniae/ansible-role-s3-proxy)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/Lusitaniae/ansible-role-s3-proxy/master/LICENSE)
-[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-Lusitaniae.s3--proxy-blue.svg)](https://galaxy.ansible.com/Lusitaniae/ansible-role-s3-proxy)
+[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-Lusitaniae.s3--proxy-blue.svg)](https://galaxy.ansible.com/Lusitaniae/s3-proxy)
 
 
 Role for installing a Nginx reverse proxy cache for your S3 repository.
