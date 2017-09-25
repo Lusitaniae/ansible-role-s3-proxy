@@ -1,0 +1,21 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: Lusitaniae
+  description: S3 proxy based on Nginx.
+  company: n/a
+  license: MIT
+  min_ansible_version: 2.0
+  platforms:
+    - name: EL
+      versions:
+      - all
+    - name: Debian
+      versions:
+      - all
+    - name: Ubuntu
+      versions:
+      - all
+  galaxy_tags:
+    - web
