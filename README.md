@@ -29,12 +29,12 @@ Role Variables
 
 Variables you *should* or *might want* to set, including their default values (see `defaults/main.yml`):
 
-s3_repository_url: sentinel-s2-l1c.s3.amazonaws.com
+    s3_repository_url: sentinel-s2-l1c.s3.amazonaws.com
 
-nginx_cache_valid: 3d
-nginx_cache_invalid: 30s
-nginx_cache_max_size: 40g
-nginx_cache_inactive: 30d
+    nginx_cache_valid: 3d
+    nginx_cache_invalid: 30s
+    nginx_cache_max_size: 40g
+    nginx_cache_inactive: 30d
 
 
 Example Playbooks
